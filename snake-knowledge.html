@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>台灣蛇類認識 — 野島方舟</title>
+  <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.7.0/style.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Bebas+Neue&family=Noto+Serif+TC:wght@300;400;600&family=Space+Mono&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:           #07070f;
+      --bg2:          #0c0c1a;
+      --bg3:          #0f0f22;
+      --purple:       #b57bee;
+      --purple2:      #d4a8ff;
+      --purple-dim:   #5a2d8a;
+      --purple-glow:  rgba(181,123,238,0.18);
+      --purple-glow2: rgba(181,123,238,0.08);
+      --gold:         #c9a96e;
+      --red:          #ff5f6d;
+      --white:        #ede8f5;
+      --gray:         #b0a8c8;
+      --border:       rgba(181,123,238,0.2);
+      --border2:      rgba(181,123,238,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--white);
+      font-family: 'LXGW WenKai TC', serif; overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.8rem;
+      background: rgba(7,7,15,0.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Orbitron', monospace; font-weight: 900; font-size: 1.35rem;
+      color: var(--purple2); text-shadow: 0 0 14px var(--purple-glow);
+      letter-spacing: 0.1em; text-decoration: none;
+    }
+    .nav-logo em {
+      font-style: normal; color: var(--gold);
+      font-size: 0.95rem; letter-spacing: 0.2em; display: block; margin-top: 2px;
+    }
+    .nav-back {
+      font-family: 'Space Mono', monospace; font-size: 0.75rem;
+      color: var(--gray); text-decoration: none;
+      border: 1px solid var(--border); padding: 0.3rem 1rem; transition: all 0.2s;
+    }
+    .nav-back:hover { color: var(--purple2); border-color: var(--purple); }
+
+    .page-hero {
+      padding: 8rem 2rem 4rem; text-align: center;
+      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border2); position: relative;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(181,123,238,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(181,123,238,0.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+    }
+    .page-label {
+      font-family: 'Space Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .page-title {
+      font-family: 'Orbitron', monospace; font-weight: 900;
+      font-size: clamp(1.8rem, 5vw, 3rem); color: var(--white); margin-bottom: 0.5rem;
+    }
+    .page-title-zh {
+      font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--purple2);
+      letter-spacing: 0.1em; margin-bottom: 1.5rem;
+    }
+    .page-desc {
+      max-width: 560px; margin: 0 auto;
+      font-size: 0.9rem; color: var(--gray); line-height: 2; font-weight: 300;
+    }
+
+    .anchor-nav {
+      position: sticky; top: 60px; z-index: 90;
+      background: rgba(12,12,26,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border2);
+      padding: 0.7rem 2rem;
+      display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
+    }
+    .anchor-nav a {
+      font-family: 'Space Mono', monospace; font-size: 0.72rem;
+      color: var(--gray); text-decoration: none;
+      padding: 0.3rem 0.9rem; border: 1px solid transparent; transition: all 0.2s;
+    }
+    .anchor-nav a:hover { color: var(--purple2); border-color: var(--border); }
+
+    .page-body { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .content-section { margin-bottom: 4rem; }
+
+    .section-label {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1rem;
+      letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase;
+      margin-bottom: 0.5rem; font-weight: 700;
+    }
+    .section-title {
+      font-family: 'Orbitron', monospace; font-weight: 700;
+      font-size: clamp(1.1rem, 3vw, 1.5rem); color: var(--white); margin-bottom: 1rem;
+    }
+    .section-rule { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; }
+    .section-rule .line { width: 40px; height: 1px; background: linear-gradient(to right, var(--purple), transparent); }
+    .section-rule .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 6px var(--purple); }
+
+    .prose p { font-size: 0.92rem; color: #ccc6e0; line-height: 2.1; margin-bottom: 1.2rem; font-weight: 300; }
+    .prose p strong { color: var(--white); font-weight: 600; }
+
+    /* ── SNAKE CARD GRID ── */
+    .snake-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem; margin: 1.5rem 0;
+    }
+    .snake-card {
+      border: 1px solid var(--border2);
+      background: linear-gradient(135deg, rgba(181,123,238,0.03) 0%, transparent 100%);
+      overflow: hidden; transition: all 0.3s;
+    }
+    .snake-card:hover { border-color: rgba(181,123,238,0.35); transform: translateY(-3px); }
+    .snake-card-img {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 0.4rem;
+    }
+    .snake-card-img span {
+      font-family: 'Space Mono', monospace; font-size: 0.65rem;
+      color: var(--purple-dim); letter-spacing: 0.1em;
+    }
+    .snake-card-body { padding: 1.2rem; }
+    .snake-name {
+      font-family: 'Orbitron', monospace; font-size: 0.78rem;
+      color: var(--purple2); letter-spacing: 0.08em; margin-bottom: 0.2rem;
+    }
+    .snake-zh { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 0.8rem; }
+    .snake-desc { font-size: 0.8rem; color: #b0a8c8; line-height: 1.8; font-weight: 300; }
+    .snake-tag {
+      display: inline-block; margin-top: 0.8rem;
+      font-family: 'Space Mono', monospace; font-size: 0.65rem;
+      color: var(--red); border: 1px solid rgba(255,95,109,0.3);
+      padding: 0.15rem 0.6rem; letter-spacing: 0.05em;
+    }
+    .snake-tag.neuro { color: #e8d44a; border-color: rgba(232,212,74,0.4); }
+    .snake-tag.mixed { color: #60c878; border-color: rgba(96,200,120,0.4); }
+
+    .warning-box {
+      border: 1px solid rgba(255,95,109,0.4);
+      background: rgba(255,95,109,0.06);
+      padding: 1.4rem 1.6rem; margin: 1.5rem 0;
+      position: relative; overflow: hidden;
+    }
+    .warning-box::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--red); box-shadow: 0 0 10px var(--red);
+    }
+    .warning-label {
+      font-family: 'Space Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.2em; color: var(--red); text-transform: uppercase; margin-bottom: 0.6rem;
+    }
+    .warning-box p { font-size: 0.88rem; color: #cc8888; line-height: 1.9; font-weight: 300; }
+    .warning-box p strong { color: #ffaaaa; }
+
+    .note-box {
+      border: 1px solid var(--border); background: var(--purple-glow2);
+      padding: 1.2rem 1.6rem; margin: 1.5rem 0; position: relative; overflow: hidden;
+    }
+    .note-box::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--purple);
+    }
+    .note-label {
+      font-family: 'Space Mono', monospace; font-size: 0.9rem;
+      letter-spacing: 0.2em; color: var(--purple2); text-transform: uppercase; margin-bottom: 0.6rem;
+    }
+    .note-box p { font-size: 0.88rem; color: #ccc6e0; line-height: 1.9; font-weight: 300; }
+
+    .image-block { margin: 2rem 0; }
+    .img-placeholder {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--bg3); border: 1px dashed rgba(181,123,238,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 0.5rem;
+    }
+    .img-placeholder span { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--purple-dim); letter-spacing: 0.1em; }
+    .image-caption { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--gray); margin-top: 0.6rem; letter-spacing: 0.05em; line-height: 1.6; }
+
+    .divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 3rem 0; }
+
+    .back-btn-wrap { text-align: center; margin-top: 4rem; }
+    .back-btn {
+      display: inline-block;
+      font-family: 'Orbitron', monospace; font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.12em; color: var(--purple2); text-decoration: none;
+      border: 1px solid var(--purple); padding: 0.85rem 2.5rem;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      transition: all 0.25s;
+    }
+    .back-btn:hover { background: var(--purple-glow2); box-shadow: 0 0 24px var(--purple-glow); }
+
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border2);
+      padding: 1.8rem; text-align: center;
+      font-family: 'Space Mono', monospace; font-size: 0.7rem; color: #6a6080;
+    }
+    footer span { color: var(--purple-dim); }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.2rem; }
+      .anchor-nav { top: 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    WILDISLE ARK
+    <em>野島方舟工作室</em>
+  </a>
+  <a class="nav-back" href="index.html">← 返回首頁</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">// knowledge base · 02</div>
+  <h1 class="page-title">TAIWAN SNAKE KNOWLEDGE</h1>
+  <p class="page-title-zh">台灣蛇類認識</p>
+  <p class="page-desc">真正的安全，來自你看懂風險，帶你安全踏入野生動物的客廳。</p>
+</div>
+
+<div class="anchor-nav">
+  <a href="#overview">台灣蛇類概況</a>
+  <a href="#encounter">遇到一條蛇</a>
+  <a href="#myths">破除迷思</a>
+  <a href="#venomous">六大毒蛇</a>
+  <a href="#lookalike">易混淆蛇類</a>
+  <a href="#others">其他蛇類</a>
+  <a href="#invasive">外來入侵種</a>
+</div>
+
+<div class="page-body">
+
+  <!-- SECTION 1 -->
+  <div class="content-section" id="overview">
+    <div class="section-label">// 01</div>
+    <h2 class="section-title">台灣蛇類概況</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <!-- 可視化數據模板 -->
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; margin:1.8rem 0; align-items:start;">
+
+      <!-- 左側文字 -->
+      <div>
+        <p style="font-size:0.92rem; color:#ccc6e0; line-height:2; font-weight:300;">大多數蛇類是溫和、膽小的，遇到人的第一反應是逃跑而非攻擊。咬傷事件大多發生在人不小心踩踏、觸碰或驚嚇到蛇的情況下。</p>
+        <p style="font-size:0.92rem; color:#ccc6e0; line-height:2; font-weight:300; margin-top:1rem;">毒液對於蛇來說是珍貴的，除非退無可退才會選擇開咬。</p>
+      </div>
+
+      <!-- 右側 2x2 數據卡 -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
+        <div style="border:1px solid rgba(181,123,238,0.25); background:rgba(181,123,238,0.06); padding:1.4rem 1.2rem; position:relative; overflow:hidden;">
+          <div style="font-family:'Orbitron',monospace; font-size:2rem; font-weight:900; color:var(--purple2); line-height:1;">50<span style="font-size:1rem;">+</span></div>
+          <div style="font-size:0.82rem; color:var(--white); margin-top:0.5rem; font-weight:600;">陸生蛇類</div>
+          <div style="font-size:0.7rem; color:#7a6a9a; margin-top:0.2rem; font-family:'Space Mono',monospace;">Native Land Species</div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right, var(--purple), transparent);"></div>
+        </div>
+        <div style="border:1px solid rgba(232,80,80,0.3); background:rgba(232,80,80,0.07); padding:1.4rem 1.2rem; position:relative; overflow:hidden;">
+          <div style="font-family:'Orbitron',monospace; font-size:2rem; font-weight:900; color:#e87070; line-height:1;">6</div>
+          <div style="font-size:0.82rem; color:var(--white); margin-top:0.5rem; font-weight:600;">六大毒蛇</div>
+          <div style="font-size:0.7rem; color:#7a6a9a; margin-top:0.2rem; font-family:'Space Mono',monospace;">Notorious Six</div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right, #e87070, transparent);"></div>
+        </div>
+        <div style="border:1px solid rgba(232,136,74,0.25); background:rgba(232,136,74,0.06); padding:1.4rem 1.2rem; position:relative; overflow:hidden;">
+          <div style="font-family:'Orbitron',monospace; font-size:2rem; font-weight:900; color:#e8884a; line-height:1;">1</div>
+          <div style="font-size:0.82rem; color:var(--white); margin-top:0.5rem; font-weight:600;">外來種蛇類</div>
+          <div style="font-size:0.7rem; color:#7a6a9a; margin-top:0.2rem; font-family:'Space Mono',monospace;">Invasive Species</div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right, #e8884a, transparent);"></div>
+        </div>
+        <div style="border:1px solid rgba(96,200,120,0.25); background:rgba(96,200,120,0.06); padding:1.4rem 1.2rem; position:relative; overflow:hidden;">
+          <div style="font-family:'Orbitron',monospace; font-size:2rem; font-weight:900; color:#60c878; line-height:1;">4</div>
+          <div style="font-size:0.82rem; color:var(--white); margin-top:0.5rem; font-weight:600;">常見海蛇</div>
+          <div style="font-size:0.7rem; color:#7a6a9a; margin-top:0.2rem; font-family:'Space Mono',monospace;">Sea Snake Species</div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right, #60c878, transparent);"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="image-block">
+      <div class="img-placeholder">
+        <span>📷 圖片區塊</span>
+        <span>// 建議放台灣蛇類分布或多樣性概覽圖</span>
+      </div>
+      <div class="image-caption">// 圖說文字</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 2: 遇到一條蛇 -->
+  <div class="content-section" id="encounter">
+    <div class="section-label">// 02</div>
+    <h2 class="section-title">遇到一條蛇</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="warning-box">
+      <div class="warning-label">⚠ 最重要的一件事</div>
+      <p>遇到蛇，<strong>不要試圖捕捉、驅趕或攻擊牠</strong>。大多數咬傷事件，都發生在人主動干擾蛇的情況下。</p>
+    </div>
+
+    <div class="prose">
+      <p>野外遇蛇時，請依照以下步驟應對：</p>
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">Step 1 · 停下來</div>
+      <p>立刻停止移動，避免踩踏或進一步驚嚇到蛇。</p>
+    </div>
+    <div class="note-box">
+      <div class="note-label">Step 2 · 保持距離</div>
+      <p>緩慢後退，與蛇保持至少 2 公尺以上距離。蛇的攻擊距離通常不超過自身體長的一半。</p>
+    </div>
+    <div class="note-box">
+      <div class="note-label">Step 3 · 靜待離開</div>
+      <p>大多數蛇在沒有威脅的情況下，會自行離開。給牠時間和空間。</p>
+    </div>
+    <div class="note-box">
+      <div class="note-label">Step 4 · 繞道通過</div>
+      <p>確認蛇不在路上後，從遠處繞行通過，不要從蛇的正上方跨越。</p>
+    </div>
+
+    <div class="divider" style="margin:2rem 0;"></div>
+
+    <div class="prose">
+      <p>蛇類是生態系中重要的捕食者，控制鼠類及其他小型動物的族群數量。住家附近出現蛇，通常代表周遭環境有豐富的食物來源（鼠類、青蛙等），而非蛇主動侵入。</p>
+      <p>透過<strong>環境整理</strong>（減少廢棄物堆積、清除雜草、填補牆縫）可有效降低蛇類進入住家的機會，是比捕捉驅趕更根本的解決方式。</p>
+    </div>
+
+    <div class="note-box" style="border-color:rgba(232,136,74,0.4); background:rgba(232,136,74,0.05); --before-color:#e8884a;">
+      <div class="note-label" style="color:#e8884a;">// 住家防蛇建議</div>
+      <p>
+        • 定期清理草叢、石堆與廢棄物堆積，減少蛇類藏匿空間<br>
+        • 封堵地基縫隙、排水孔與牆面裂縫<br>
+        • 夜間於庭院或戶外移動時，先開燈確認環境<br>
+        • 家中若發現蛇，勿自行捕捉，可聯繫農業局協助
+      </p>
+      <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#e8884a;"></div>
+    </div>
+    <div class="note-box" style="border-color:rgba(96,200,120,0.4); background:rgba(96,200,120,0.05);">
+      <div class="note-label" style="color:#60c878;">// 野外活動指南</div>
+      <p>
+        • 行走時走在明顯路徑上，避免踩入草叢或石縫<br>
+        • 需要打草驚蛇，不踩踏落葉堆<br>
+        • 夜間活動務必攜帶手電筒，照亮前方地面<br>
+        • 穿著包鞋、長袖<br>
+        • 不隨意捕捉不認識的生物
+      </p>
+      <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#60c878;"></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 3: 破除迷思 -->
+  <div class="content-section" id="myths">
+    <div class="section-label">// 03</div>
+    <h2 class="section-title">破除迷思</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="prose">
+      <p>關於蛇類，社會上流傳許多錯誤觀念，這些迷思往往讓人做出危險或不必要的行為。</p>
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">❌ 迷思 01 · 蛇會主動攻擊人</div>
+      <p>蛇類對人類沒有主動獵食的意圖，絕大多數咬傷事件都發生在人不小心驚嚇或踩踏到蛇的情況下。蛇在感受到威脅時的第一反應是逃跑，咬人是牠們萬不得已的最後防禦手段。</p>
+    </div>
+    <div class="note-box">
+      <div class="note-label">❌ 迷思 02 · 看到蛇就要打死牠</div>
+      <p>大多數蛇遇到人的第一反應是逃跑。主動攻擊蛇反而是大多數咬傷事件的真正原因。<strong>遇蛇保持距離、讓牠自行離開</strong>才是正確做法。</p>
+    </div>
+    <div class="note-box">
+      <div class="note-label">❌ 迷思 03 · 花紋鮮豔的蛇才有毒</div>
+      <p>外觀鮮豔程度無法判斷是否有毒，不認識的蛇一律保持距離。雨傘節、龜殼花等毒蛇外觀樸素；紅竹蛇、高砂蛇、紅斑蛇等無毒蛇外表鮮豔。</p>
+    </div>
+    <div class="note-box">
+      <div class="note-label">❌ 迷思 04 · 毒蛇的頭一定是三角形</div>
+      <p><strong>頭部形狀不是辨識有無毒性依據</strong>，大多蝮蛇科的毒蛇因具有頰窩的構造，使頭部呈現三角形的頭型，其他科別的劇毒蛇種，如蝙蝠蛇科的眼鏡蛇、雨傘節，頭部為橢圓形。且對頭型的認定是很主觀的意識，部分無毒蛇在受驚時也會將頭部壓扁呈三角形。</p>
+    </div>
+    <div class="note-box">
+      <div class="note-label">❌ 迷思 05 · 台灣的眼鏡蛇都是被放生的外國眼鏡蛇</div>
+      <p>台灣的眼鏡蛇為<strong>中華眼鏡蛇（Naja atra）</strong>，是台灣本土的原生蛇種，廣泛分布於全台低海拔山區與農田。外國的毒蛇是禁止輸入台灣，就算是早年留下的寵物蛇，數量不大，加上許多原產地位於東南亞，在台灣要能度冬並建立族群不太可能。在野外看到非原生種蛇類多半是寵物逃逸，可連絡農業處或動保處等相關單位處理。</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 4 -->
+  <div class="content-section" id="venomous">
+    <div class="section-label">// 04</div>
+    <h2 class="section-title">台灣六大毒蛇</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="prose">
+      <p>台灣最廣為人知的六種蛇類，對應台灣研發的四種血清，在野外活動應具備辨識的基本能力。</p>
+    </div>
+
+    <div class="snake-grid">
+      <!-- 01 赤尾青竹絲 -->
+      <div class="snake-card">
+        <div class="snake-card-img">
+          <span>📷</span><span>// 赤尾青竹絲圖片</span>
+        </div>
+        <div class="snake-card-body">
+          <div class="snake-zh">赤尾青竹絲</div>
+          <div class="snake-name">TRIMERESURUS STEJNEGERI</div>
+          <div class="snake-desc">
+            <strong>科：</strong>蝮蛇科<br>
+            <strong>俗稱：</strong>青竹絲、赤尾鮐、竹葉青蛇<br>
+            <strong>小檔案：</strong>坐等型，保護色佳、常見蛇類<br>
+            <hr style="border-color:rgba(255,255,255,0.1); margin:0.6rem 0;">
+            • 頭成三角形（頰窩）<br>
+            • 赤紅色的尾巴<br>
+            • 鱗片為強鱗脊<br>
+            • 體側偶有白或白紅縱線或無線
+          </div>
+          <span class="snake-tag">出血毒</span>
+        </div>
+      </div>
+      <!-- 02 龜殼花 -->
+      <div class="snake-card">
+        <div class="snake-card-img">
+          <span>📷</span><span>// 龜殼花圖片</span>
+        </div>
+        <div class="snake-card-body">
+          <div class="snake-zh">龜殼花</div>
+          <div class="snake-name">PROTOBOTHROPS MUCROSQUAMATUS</div>
+          <div class="snake-desc">
+            <strong>科：</strong>蝮蛇科<br>
+            <strong>俗稱：</strong>烙鐵頭<br>
+            <strong>小檔案：</strong>脾氣差，保護色佳、常見蛇類<br>
+            <hr style="border-color:rgba(255,255,255,0.1); margin:0.6rem 0;">
+            • 頭成三角形（頰窩）<br>
+            • 眼後有深棕色縱帶<br>
+            • 背部不規則的棕色斑塊<br>
+            • 腹鱗為花色斑塊，尾部磚紅色調
+          </div>
+          <span class="snake-tag">出血毒</span>
+        </div>
+      </div>
+      <!-- 03 雨傘節 -->
+      <div class="snake-card">
+        <div class="snake-card-img">
+          <span>📷</span><span>// 雨傘節圖片</span>
+        </div>
+        <div class="snake-card-body">
+          <div class="snake-zh">雨傘節</div>
+          <div class="snake-name">BUNGARUS MULTICINCTUS</div>
+          <div class="snake-desc">
+            <strong>科：</strong>蝙蝠蛇科<br>
+            <strong>俗稱：</strong>銀環蛇、白節仔、百節蛇<br>
+            <strong>小檔案：</strong>膽小，8字防禦、常見蛇類<br>
+            <hr style="border-color:rgba(255,255,255,0.1); margin:0.6rem 0;">
+            • 頭為橢圓形<br>
+            • 背上六角形的大鱗片<br>
+            • 黑白分明，間隔清晰
+          </div>
+          <span class="snake-tag neuro">神經毒</span>
+        </div>
+      </div>
+      <!-- 04 眼鏡蛇 -->
+      <div class="snake-card">
+        <div class="snake-card-img">
+          <span>📷</span><span>// 眼鏡蛇圖片</span>
+        </div>
+        <div class="snake-card-body">
+          <div class="snake-zh">中華眼鏡蛇</div>
+          <div class="snake-name">NAJA ATRA</div>
+          <div class="snake-desc">
+            <strong>科：</strong>蝙蝠蛇科<br>
+            <strong>俗稱：</strong>飯匙倩、舟山眼鏡蛇<br>
+            <strong>小檔案：</strong>四大家蛇、常被講成外國眼鏡蛇<br>
+            <hr style="border-color:rgba(255,255,255,0.1); margin:0.6rem 0;">
+            • 頭成橢圓形<br>
+            • 頸部背面花紋多變<br>
+            • 受刺激會開皮摺站立威嚇
+          </div>
+          <span class="snake-tag neuro">神經毒</span>
+        </div>
+      </div>
+      <!-- 05 百步蛇 -->
+      <div class="snake-card">
+        <div class="snake-card-img">
+          <span>📷</span><span>// 百步蛇圖片</span>
+        </div>
+        <div class="snake-card-body">
+          <div class="snake-zh">百步蛇</div>
+          <div class="snake-name">DEINAGKISTRODON ACUTUS</div>
+          <div class="snake-desc">
+            <strong>科：</strong>蝮蛇科<br>
+            <strong>俗稱：</strong>五步蛇、尖吻蝮<br>
+            <strong>小檔案：</strong>排灣族祖靈<br>
+            <hr style="border-color:rgba(255,255,255,0.1); margin:0.6rem 0;">
+            • 背部有大塊菱形斑<br>
+            • 頭部呈三角形，吻鼻上翹<br>
+            • 體側與腹部相連處有黑斑
+          </div>
+          <span class="snake-tag">出血毒</span>
+        </div>
+      </div>
+      <!-- 06 鎖鏈蛇 -->
+      <div class="snake-card">
+        <div class="snake-card-img">
+          <span>📷</span><span>// 鎖鏈蛇圖片</span>
+        </div>
+        <div class="snake-card-body">
+          <div class="snake-zh">鎖鏈蛇</div>
+          <div class="snake-name">DABOIA SIAMENSIS</div>
+          <div class="snake-desc">
+            <strong>科：</strong>蝮蛇科<br>
+            <strong>俗稱：</strong>七步蛇、圓斑蝰<br>
+            <strong>小檔案：</strong>蚊香、噴氣汽水罐<br>
+            <strong>分布：</strong>高屏、花東地區、平地河邊礫石草叢<br>
+            <hr style="border-color:rgba(255,255,255,0.1); margin:0.6rem 0;">
+            • 體型粗短，大鼻孔<br>
+            • 頭、身體有許多橢圓形斑紋<br>
+            • 體背中央的橢圓形斑紋常前後相連
+          </div>
+          <span class="snake-tag mixed">混合毒（出血伴神經）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">// 辨識小提醒</div>
+      <p>台灣有多種無毒蛇外觀與毒蛇相似，保持安全距離互動、靜待他們離開，不要隨意捕捉不認識的動物。</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 3: 易混淆毒蛇與無毒蛇 -->
+  <div class="content-section" id="lookalike">
+    <div class="section-label">// 05</div>
+    <h2 class="section-title">易混淆毒蛇與無毒蛇</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="prose">
+      <p>台灣有數種無毒蛇與毒蛇外觀高度相似，野外遇蛇時切勿憑外觀輕易判斷是否有毒。以下為三組常見的易混淆蛇種。</p>
+    </div>
+
+    <!-- 組一：赤尾青竹絲 vs 青蛇 -->
+    <div style="margin:1.5rem 0;">
+      <div style="font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--purple2); letter-spacing:0.2em; margin-bottom:0.8rem;">// 組一 · GROUP 01</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div style="border:1px solid rgba(232,80,80,0.3); background:rgba(232,80,80,0.06); padding:1.4rem; position:relative;">
+          <div style="font-size:0.85rem; font-family:'Space Mono',monospace; color:#e87070; letter-spacing:0.15em; margin-bottom:0.5rem;">⚠ 有毒</div>
+          <div style="font-size:1.1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">赤尾青竹絲</div>
+          <div style="font-size:0.75rem; font-style:italic; color:var(--purple2); margin-bottom:0.8rem;">Trimeresurus stejnegeri</div>
+          <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+            • 頭部明顯呈三角形（頰窩）<br>
+            • 尾巴為赤紅色<br>
+            • 眼睛為橘紅色<br>
+            • 體側有白色或白紅色縱線
+          </div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e87070,transparent);"></div>
+        </div>
+        <div style="border:1px solid rgba(232,212,74,0.3); background:rgba(232,212,74,0.05); padding:1.4rem; position:relative;">
+          <div style="font-size:0.85rem; font-family:'Space Mono',monospace; color:#e8d44a; letter-spacing:0.15em; margin-bottom:0.5rem;">✓ 無毒</div>
+          <div style="font-size:1.1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">青蛇</div>
+          <div style="font-size:0.75rem; font-style:italic; color:var(--purple2); margin-bottom:0.8rem;">Cyclophiops major</div>
+          <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+            • 頭部較圓、無頰窩<br>
+            • 尾巴為綠色或淡黃色<br>
+            • 眼睛為黑色<br>
+            • 體側無縱線紋路
+          </div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e8d44a,transparent);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 組二：龜殼花 vs 擬龜殼花 -->
+    <div style="margin:1.5rem 0;">
+      <div style="font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--purple2); letter-spacing:0.2em; margin-bottom:0.8rem;">// 組二 · GROUP 02</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div style="border:1px solid rgba(232,80,80,0.3); background:rgba(232,80,80,0.06); padding:1.4rem; position:relative;">
+          <div style="font-size:0.85rem; font-family:'Space Mono',monospace; color:#e87070; letter-spacing:0.15em; margin-bottom:0.5rem;">⚠ 有毒</div>
+          <div style="font-size:1.1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">龜殼花</div>
+          <div style="font-size:0.75rem; font-style:italic; color:var(--purple2); margin-bottom:0.8rem;">Protobothrops mucrosquamatus</div>
+          <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+            • 頭部明顯三角形（頰窩）<br>
+            • 眼後有深棕色縱帶<br>
+            • 背部不規則棕色斑塊<br>
+            • 腹鱗花色斑塊，尾部磚紅色調
+          </div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e87070,transparent);"></div>
+        </div>
+        <div style="border:1px solid rgba(232,212,74,0.3); background:rgba(232,212,74,0.05); padding:1.4rem; position:relative;">
+          <div style="font-size:0.85rem; font-family:'Space Mono',monospace; color:#e8d44a; letter-spacing:0.15em; margin-bottom:0.5rem;">✓ 無毒</div>
+          <div style="font-size:1.1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">擬龜殼花</div>
+          <div style="font-size:0.75rem; font-style:italic; color:var(--purple2); margin-bottom:0.8rem;">Oligodon formosanus</div>
+          <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+            • 頭部較圓、無頰窩<br>
+            • 無眼後縱帶<br>
+            • 背部斑紋較規則、對稱<br>
+            • 體型較細小
+          </div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e8d44a,transparent);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 組三：雨傘節 vs 白梅花蛇 -->
+    <div style="margin:1.5rem 0;">
+      <div style="font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--purple2); letter-spacing:0.2em; margin-bottom:0.8rem;">// 組三 · GROUP 03</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div style="border:1px solid rgba(232,80,80,0.3); background:rgba(232,80,80,0.06); padding:1.4rem; position:relative;">
+          <div style="font-size:0.85rem; font-family:'Space Mono',monospace; color:#e87070; letter-spacing:0.15em; margin-bottom:0.5rem;">⚠ 有毒</div>
+          <div style="font-size:1.1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">雨傘節</div>
+          <div style="font-size:0.75rem; font-style:italic; color:var(--purple2); margin-bottom:0.8rem;">Bungarus multicinctus</div>
+          <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+            • 背上有六角形大鱗片（明顯脊稜）<br>
+            • 黑白環紋間隔清晰均等<br>
+            • 白色環紋較細<br>
+            • 尾部較短
+          </div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e87070,transparent);"></div>
+        </div>
+        <div style="border:1px solid rgba(232,212,74,0.3); background:rgba(232,212,74,0.05); padding:1.4rem; position:relative;">
+          <div style="font-size:0.85rem; font-family:'Space Mono',monospace; color:#e8d44a; letter-spacing:0.15em; margin-bottom:0.5rem;">✓ 無毒</div>
+          <div style="font-size:1.1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">白梅花蛇</div>
+          <div style="font-size:0.75rem; font-style:italic; color:var(--purple2); margin-bottom:0.8rem;">Lycodon ruhstrati</div>
+          <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+            • 無明顯背部脊稜<br>
+            • 白色環紋較寬、不均等<br>
+            • 頭部較扁平<br>
+            • 體型較細長
+          </div>
+          <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e8d44a,transparent);"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">// 野外判斷原則</div>
+      <p>不認識的動物，<strong>一律保持距離、不觸碰、不隨意捕捉</strong>。</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 4: 野外你該認識的其他蛇 -->
+  <div class="content-section" id="others">
+    <div class="section-label">// 06</div>
+    <h2 class="section-title">野外你該認識的其他蛇</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="prose">
+      <p>除了六大毒蛇，台灣野外還有許多值得認識的蛇種，牠們在生態系中扮演重要角色，大多數對人類無害。</p>
+    </div>
+
+    <!-- 無毒蛇 -->
+    <div style="font-family:'Space Mono',monospace; font-size:0.7rem; color:#60c878; letter-spacing:0.2em; margin:1.5rem 0 0.8rem;">// 無毒蛇 · NON-VENOMOUS</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+      <div style="border:1px solid rgba(232,212,74,0.3); background:rgba(232,212,74,0.05); padding:1.3rem; position:relative;">
+        <div style="font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">王錦蛇</div>
+        <div style="font-size:0.72rem; font-style:italic; color:var(--purple2); margin-bottom:0.7rem;">Elaphe carinata</div>
+        <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+          • 台灣體型最大的無毒蛇<br>
+          • 背部黑黃花紋，鱗緣黃色<br>
+          • 廣泛分布於平地至中低海拔山區
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e8d44a,transparent);"></div>
+      </div>
+      <div style="border:1px solid rgba(232,212,74,0.3); background:rgba(232,212,74,0.05); padding:1.3rem; position:relative;">
+        <div style="font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">南蛇</div>
+        <div style="font-size:0.72rem; font-style:italic; color:var(--purple2); margin-bottom:0.7rem;">Ptyas mucosa</div>
+        <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+          • 行動迅速、移動距離長<br>
+          • 體色多為黃褐至橄欖綠<br>
+          • 常見於平地農田、草叢<br>
+          • 以鼠類、蜥蜴、蛙類為食
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e8d44a,transparent);"></div>
+      </div>
+      <div style="border:1px solid rgba(232,212,74,0.3); background:rgba(232,212,74,0.05); padding:1.3rem; position:relative;">
+        <div style="font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">黑眉錦蛇</div>
+        <div style="font-size:0.72rem; font-style:italic; color:var(--purple2); margin-bottom:0.7rem;">Elaphe taeniura</div>
+        <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+          • 眼後有明顯黑色縱帶為辨識特徵<br>
+          • 攀爬能力強，常見於樹上或屋舍<br>
+          • 四大家蛇之一 · 保育類野生動物<br>
+          • 對控制鼠類族群有重要貢獻
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e8d44a,transparent);"></div>
+      </div>
+      <div style="border:1px solid rgba(232,212,74,0.3); background:rgba(232,212,74,0.05); padding:1.3rem; position:relative;">
+        <div style="font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">紅斑蛇</div>
+        <div style="font-size:0.72rem; font-style:italic; color:var(--purple2); margin-bottom:0.7rem;">Dinodon rufozonatum</div>
+        <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+          • 體色為紅褐色帶黑色橫帶<br>
+          • 夜行性，常見於平地與低山<br>
+          • 以蜥蜴、小型蛙類為主食
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e8d44a,transparent);"></div>
+      </div>
+    </div>
+
+    <!-- 微毒蛇 -->
+    <div style="font-family:'Space Mono',monospace; font-size:0.7rem; color:#e8884a; letter-spacing:0.2em; margin:1rem 0 0.8rem;">// 微毒蛇 · MILDLY VENOMOUS</div>
+    <div style="margin-bottom:0.5rem; font-size:0.8rem; color:#a89ec0;">後溝牙蛇類，毒液對人類影響輕微，一般情況不具生命威脅，但仍建議避免接觸。</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:2rem;">
+      <div style="border:1px solid rgba(232,136,74,0.3); background:rgba(232,136,74,0.05); padding:1.3rem; position:relative;">
+        <div style="font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">茶斑蛇</div>
+        <div style="font-size:0.72rem; font-style:italic; color:var(--purple2); margin-bottom:0.7rem;">Psammodynastes pulverulentus</div>
+        <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+          • 體色為茶褐色帶深色斑紋<br>
+          • 頭部略呈三角形，易與毒蛇混淆<br>
+          • 日行性，常見於山區溪流附近<br>
+          • 後溝牙，對人毒性極低
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e8884a,transparent);"></div>
+      </div>
+      <div style="border:1px solid rgba(232,136,74,0.3); background:rgba(232,136,74,0.05); padding:1.3rem; position:relative;">
+        <div style="font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">大頭蛇</div>
+        <div style="font-size:0.72rem; font-style:italic; color:var(--purple2); margin-bottom:0.7rem;">Boiga kraepelini</div>
+        <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+          • 頭部明顯寬大，眼睛大而突出<br>
+          • 善於攀爬樹木<br>
+          • 以蜥蜴、小型蛙類為主食<br>
+          • 後溝牙，對人毒性極低
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e8884a,transparent);"></div>
+      </div>
+    </div>
+
+    <!-- 登山你該認識的蛇 -->
+    <div style="font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--purple2); letter-spacing:0.2em; margin:1rem 0 0.8rem;">// 登山你該認識的蛇 · MOUNTAIN HIKING</div>
+    <div style="margin-bottom:0.8rem; font-size:0.8rem; color:#a89ec0;">中高海拔山區特有或偏好棲息的蛇種，登山前建議認識。</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+      <div style="border:1px solid rgba(232,212,74,0.3); background:rgba(232,212,74,0.05); padding:1.3rem; position:relative;">
+        <div style="font-size:0.65rem; font-family:'Space Mono',monospace; color:#e8d44a; letter-spacing:0.15em; margin-bottom:0.4rem;">✓ 無毒</div>
+        <div style="font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">鈍頭蛇</div>
+        <div style="font-size:0.72rem; font-style:italic; color:var(--purple2); margin-bottom:0.7rem;">Pareas formosensis</div>
+        <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+          • 頭部寬扁、吻部鈍圓為主要特徵<br>
+          • 夜行性，棲息於中高海拔潮濕山區<br>
+          • 特化以蝸牛、蛞蝓為主食<br>
+          • 性情溫和，對人無威脅
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e8d44a,transparent);"></div>
+      </div>
+      <div style="border:1px solid rgba(232,80,80,0.3); background:rgba(232,80,80,0.06); padding:1.3rem; position:relative;">
+        <div style="font-size:0.65rem; font-family:'Space Mono',monospace; color:#e87070; letter-spacing:0.15em; margin-bottom:0.4rem;">⚠ 劇毒</div>
+        <div style="font-size:1rem; font-weight:700; color:var(--white); margin-bottom:0.2rem;">菊池氏龜殼花</div>
+        <div style="font-size:0.72rem; font-style:italic; color:var(--purple2); margin-bottom:0.7rem;">Protobothrops kikuzatoi</div>
+        <div style="font-size:0.82rem; color:#ccc6e0; line-height:1.9;">
+          • 台灣特有種，棲息於中高海拔山區<br>
+          • 外觀與龜殼花相似，體色偏深<br>
+          • 出血毒，毒性強烈<br>
+          • 族群稀少，屬保育類野生動物
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(to right,#e87070,transparent);"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 5: 外來入侵蛇類 -->
+  <div class="content-section" id="invasive">
+    <div class="section-label">// 07</div>
+    <h2 class="section-title">外來入侵蛇類</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="prose">
+      <p>外來種蛇類可能透過寵物貿易、貨物運輸等管道進入台灣，對本土生態系造成潛在威脅。目前台灣已記錄一種外來入侵蛇類。</p>
+    </div>
+
+    <div class="note-box" style="border-color:rgba(232,136,74,0.4); background:rgba(232,136,74,0.06);">
+      <div class="note-label" style="color:#e8884a;">白枕白環蛇 · Lycodon capucinus</div>
+      <p>
+        <strong>科：</strong>黃頷蛇科（無毒）<br>
+        <strong>俗稱：</strong>變色蛇、家蛇<br>
+        <strong>原產地：</strong>東南亞<br>
+        <strong>入侵現況：</strong>屏東縣東港一帶，目前狀況還不明朗。<br><br>
+        • 體色多變，幼蛇頸部有白色環紋（成體漸消）<br>
+        • 游獵型，夜間主動搜索獵物<br>
+        • 常出沒於住家、倉庫、農舍附近<br>
+        • 以壁虎、小型蜥蜴為食，適應力極強<br>
+        • 雖無毒，但其擴散可能壓迫本土蛇類的生態棲位
+      </p>
+      <div style="margin-top:0.8rem; font-size:0.78rem; color:#e8884a; font-family:'Space Mono',monospace;">⚠ 發現疑似外來種蛇類請勿自行捕捉，可通報林業及自然保育署</div>
+      <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#e8884a;"></div>
+    </div>
+
+    <div class="image-block">
+      <div class="img-placeholder">
+        <span>📷 圖片區塊</span>
+        <span>// 白枕白環蛇生態照</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-btn-wrap">
+    <a class="back-btn" href="index.html">← 返回野島方舟首頁</a>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 <span>野島方舟 Wildisle Ark</span> &nbsp;·&nbsp; Taiwan Ecological Education Studio &nbsp;·&nbsp; <span>wildisle-ark.github.io</span>
+</footer>
+
+</body>
+</html>
