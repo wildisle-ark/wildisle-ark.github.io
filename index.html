@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>野島方舟 Wildisle Ark</title>
+  <meta name="description" content="野島方舟是台灣本土生態教育工作室，專注兩棲爬蟲、鳥類辨識與毒蛇咬傷急救教育，提供學校、企業、戶外活動客製化生態講座。"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Serif+TC:wght@300;400;600&family=Space+Mono&family=Zen+Maru+Gothic:wght@700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.7.0/style.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #06060e;
+      --bg2:      #0a0a18;
+      --bg3:      #0e0e20;
+      --purple:   #b57bee;
+      --purple2:  #d4a8ff;
+      --purple-dim: #5a2d8a;
+      --purple-glow: rgba(181,123,238,0.18);
+      --purple-glow2: rgba(181,123,238,0.08);
+      --gold:     #c9a96e;
+      --white:    #ede8f5;
+      --gray:     #b0a8c8;
+      --border:   rgba(181,123,238,0.2);
+      --border2:  rgba(181,123,238,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body { background: var(--bg); color: var(--white); font-family: 'LXGW WenKai TC', serif; overflow-x: hidden; }
+
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .aurora { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .aurora::before, .aurora::after { content: ''; position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.12; }
+    .aurora::before {
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, #7b3fe4 0%, transparent 70%);
+      top: -120px; left: -80px;
+      animation: drift1 22s ease-in-out infinite alternate;
+    }
+    .aurora::after {
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, #4a1a8a 0%, transparent 70%);
+      bottom: -100px; right: -60px;
+      animation: drift2 28s ease-in-out infinite alternate;
+    }
+    @keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(80px,60px) scale(1.15); } }
+    @keyframes drift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-60px,-40px) scale(1.1); } }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(6,6,14,0.85); backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid var(--border2);
+    }
+    nav::after {
+      content: ''; position: absolute; bottom: 0; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(181,123,238,0.25), transparent);
+    }
+    .nav-logo {
+      font-family: 'Orbitron', monospace; font-weight: 900; font-size: 1.35rem;
+      color: var(--purple2); text-shadow: 0 0 22px rgba(181,123,238,0.5);
+      letter-spacing: 0.1em; text-decoration: none; transition: text-shadow 0.3s;
+    }
+    .nav-logo:hover { text-shadow: 0 0 36px rgba(181,123,238,0.85); }
+    .nav-logo em { font-style: normal; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.25em; display: block; margin-top: 2px; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      color: var(--gray); text-decoration: none; font-size: 0.78rem;
+      letter-spacing: 0.06em; font-family: 'Space Mono', monospace;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--purple2);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .nav-links a:hover { color: var(--purple2); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-social { display: flex; gap: 0.8rem; }
+    .nav-social a {
+      color: var(--gray); text-decoration: none; font-size: 0.72rem;
+      border: 1px solid var(--border); padding: 0.28rem 0.8rem;
+      font-family: 'Space Mono', monospace; transition: all 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .nav-social a::before {
+      content: ''; position: absolute; inset: 0; background: rgba(181,123,238,0.06);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .nav-social a:hover::before { transform: scaleX(1); }
+    .nav-social a:hover { color: var(--purple2); border-color: var(--purple); box-shadow: 0 0 16px var(--purple-glow); }
+
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 7rem 2rem 5rem;
+      position: relative; text-align: center;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(123,63,228,0.07), transparent);
+    }
+    #hero .grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(181,123,238,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(181,123,238,0.05) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 100%);
+    }
+    .hero-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.38em; color: var(--gold); text-transform: uppercase; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.9s 0.2s forwards; }
+    .hero-title { font-family: 'Orbitron', monospace; font-size: clamp(3rem, 9vw, 6.5rem); font-weight: 900; line-height: 0.95; color: var(--white); opacity: 0; animation: fadeUp 0.9s 0.4s forwards; }
+    .hero-title .accent {
+      display: block;
+      background: linear-gradient(135deg, var(--purple2) 0%, var(--purple) 55%, #7b3fe4 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 36px rgba(181,123,238,0.5));
+    }
+    .hero-divider { width: 1px; height: 52px; background: linear-gradient(to bottom, transparent, var(--purple), transparent); margin: 2.2rem auto; opacity: 0; animation: fadeUp 0.9s 0.6s forwards; }
+    .hero-subtitle { font-size: clamp(0.8rem, 2vw, 0.95rem); color: var(--gray); letter-spacing: 0.22em; font-family: 'Space Mono', monospace; opacity: 0; animation: fadeUp 0.9s 0.7s forwards; }
+    .hero-desc { max-width: 500px; margin: 1.8rem auto 0; font-size: 1.05rem; line-height: 2.1; color: #ccc6e0; font-weight: 300; opacity: 0; animation: fadeUp 0.9s 0.85s forwards; }
+    .hero-cta { display: flex; gap: 1.2rem; margin-top: 3rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.9s 1s forwards; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--purple) 0%, #7b3fe4 100%);
+      color: #fff; padding: 0.85rem 2.2rem; border: none; cursor: pointer;
+      font-family: 'Orbitron', monospace; font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.12em; text-decoration: none; transition: all 0.3s;
+      box-shadow: 0 4px 30px rgba(123,63,228,0.35);
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 45px rgba(181,123,238,0.55); }
+    .btn-outline {
+      background: transparent; color: var(--purple2); padding: 0.85rem 2.2rem;
+      border: 1px solid rgba(181,123,238,0.5); cursor: pointer;
+      font-family: 'Orbitron', monospace; font-weight: 700; font-size: 0.75rem;
+      letter-spacing: 0.12em; text-decoration: none; transition: all 0.3s;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      position: relative; overflow: hidden;
+    }
+    .btn-outline::before { content: ''; position: absolute; inset: 0; background: rgba(181,123,238,0.08); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .btn-outline:hover::before { transform: scaleX(1); }
+    .btn-outline:hover { border-color: var(--purple); box-shadow: 0 0 28px rgba(181,123,238,0.25); transform: translateY(-3px); }
+
+    section { padding: 7rem 2rem; position: relative; }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .section-label { font-family: 'Space Mono', monospace; font-size: 0.88rem; letter-spacing: 0.32em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.7rem; }
+    .section-title { font-family: 'Orbitron', monospace; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+    .section-rule { display: flex; align-items: center; gap: 1rem; margin-bottom: 3.5rem; }
+    .section-rule .line { width: 52px; height: 1px; background: linear-gradient(to right, var(--purple), transparent); }
+    .section-rule .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 8px var(--purple), 0 0 16px rgba(181,123,238,0.4); }
+
+    #about { background: var(--bg2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-text p { color: #ccc6e0; line-height: 2.1; margin-bottom: 1.2rem; font-size: 1.05rem; font-weight: 400; font-family: 'LXGW WenKai TC', serif; }
+    .about-text p strong { color: var(--white); font-weight: 700; }
+    .about-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+    .tag { border: 1px solid var(--border); padding: 0.28rem 0.9rem; font-size: 0.72rem; color: var(--purple2); font-family: 'Space Mono', monospace; background: var(--purple-glow2); transition: all 0.2s; }
+    .tag:hover { border-color: var(--purple); background: rgba(181,123,238,0.12); }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .stat-box { border: 1px solid var(--border2); padding: 1.8rem 1.5rem; background: linear-gradient(135deg, rgba(181,123,238,0.06) 0%, transparent 100%); position: relative; overflow: hidden; transition: all 0.3s; }
+    .stat-box::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: linear-gradient(to bottom, var(--purple), transparent); }
+    .stat-box:hover { border-color: rgba(181,123,238,0.3); transform: translateY(-2px); }
+    .stat-num { font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, var(--purple2), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-label { font-size: 0.74rem; color: var(--gray); margin-top: 0.4rem; line-height: 1.6; }
+
+    #courses { background: var(--bg); }
+    .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.2rem; }
+    .course-card { border: 1px solid var(--border2); padding: 2rem 1.8rem; background: linear-gradient(145deg, rgba(181,123,238,0.04) 0%, transparent 100%); position: relative; overflow: hidden; transition: all 0.35s; }
+    .course-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top left, rgba(181,123,238,0.08), transparent 60%); opacity: 0; transition: opacity 0.35s; }
+    .course-card:hover { border-color: rgba(181,123,238,0.4); transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(181,123,238,0.1); }
+    .course-card:hover::before { opacity: 1; }
+    .course-icon { font-size: 1.7rem; margin-bottom: 1.2rem; opacity: 0.85; }
+    .course-en { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 0.3rem; }
+    .course-title-zh { font-size: 1rem; color: var(--white); font-weight: 600; margin-bottom: 1rem; }
+    .course-desc { font-size: 0.93rem; color: #c0b8d8; line-height: 1.9; font-weight: 300; }
+
+    #knowledge { background: var(--bg3); }
+    .knowledge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.2rem; }
+    .know-card { border: 1px solid var(--border2); padding: 2.2rem; background: linear-gradient(145deg, rgba(181,123,238,0.04) 0%, var(--bg2) 100%); transition: all 0.35s; text-decoration: none; display: block; position: relative; overflow: hidden; }
+    .know-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top left, rgba(181,123,238,0.07), transparent 60%); opacity: 0; transition: opacity 0.35s; }
+    .know-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--purple), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+    .know-card:hover { border-color: rgba(181,123,238,0.4); transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+    .know-card:hover::before { opacity: 1; }
+    .know-card:hover::after { transform: scaleX(1); }
+    .know-num { font-family: 'Courier Prime', monospace; font-size: 0.9rem; color: var(--purple-dim); letter-spacing: 0.15em; margin-bottom: 1.2rem; }
+    .know-title { font-size: 1.3rem; font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
+    .know-en { font-family: 'Space Mono', monospace; font-size: 0.95rem; color: var(--purple); margin-bottom: 1rem; letter-spacing: 0.1em; }
+    .know-desc { font-size: 1rem; color: #c0b8d8; line-height: 1.9; font-weight: 300; }
+    .know-arrow { margin-top: 1.8rem; font-size: 0.72rem; color: var(--purple2); font-family: 'Space Mono', monospace; opacity: 0.5; transition: opacity 0.3s, transform 0.3s; }
+    .know-card:hover .know-arrow { opacity: 1; transform: translateX(4px); }
+
+
+    #contact { background: var(--bg); text-align: center; }
+    .contact-inner { max-width: 560px; margin: 0 auto; }
+    .contact-desc { color: #c0b8d8; line-height: 2.1; margin-bottom: 2.5rem; font-size: 1rem; font-weight: 300; }
+    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .contact-link { display: flex; align-items: center; gap: 0.7rem; border: 1px solid var(--border); padding: 0.85rem 1.8rem; color: var(--gray); text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.78rem; transition: all 0.3s; background: var(--purple-glow2); position: relative; overflow: hidden; }
+    .contact-link::before { content: ''; position: absolute; inset: 0; background: rgba(181,123,238,0.07); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .contact-link:hover::before { transform: scaleX(1); }
+    .contact-link:hover { border-color: var(--purple); color: var(--purple2); box-shadow: 0 0 28px rgba(181,123,238,0.2); }
+
+    footer { background: var(--bg2); border-top: 1px solid var(--border2); padding: 2rem; text-align: center; font-family: 'Space Mono', monospace; font-size: 0.68rem; color: #5a5070; letter-spacing: 0.05em; }
+    footer span { color: rgba(181,123,238,0.35); }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(181,123,238,0.3); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(181,123,238,0.5); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links {
+        display: none; flex-direction: column; gap: 0;
+        position: fixed; top: 60px; left: 0; right: 0;
+        background: rgba(6,6,14,0.97); backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border2);
+        padding: 0.5rem 0; z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-bottom: 1px solid var(--border2); }
+      .nav-links a {
+        display: block; padding: 0.9rem 1.5rem; font-size: 0.82rem;
+        letter-spacing: 0.12em;
+      }
+      .nav-links a::after { display: none; }
+      .nav-social { display: none; }
+      .nav-hamburger {
+        display: flex; flex-direction: column; justify-content: center;
+        gap: 5px; cursor: pointer; padding: 0.3rem; background: none;
+        border: none; width: 32px; height: 32px;
+      }
+      .nav-hamburger span {
+        display: block; width: 22px; height: 1.5px;
+        background: var(--gray); transition: all 0.28s ease;
+        transform-origin: center;
+      }
+      .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--purple2); }
+      .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--purple2); }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 769px) {
+      .nav-hamburger { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">
+    WILDISLE ARK
+    <em>野島方舟工作室</em>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeMenu()">關於</a></li>
+    <li><a href="#knowledge" onclick="closeMenu()">知識庫</a></li>
+    <li><a href="#courses" onclick="closeMenu()">課程</a></li>
+    <li><a href="#contact" onclick="closeMenu()">邀課</a></li>
+  </ul>
+  <div class="nav-social">
+    <a href="https://www.instagram.com/wildisle_ark" target="_blank">Instagram</a>
+    <a href="https://www.threads.com/@wildisle_ark" target="_blank">Threads</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="開啟選單" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section id="hero">
+  <div class="aurora"></div>
+  <div class="grid-bg"></div>
+  <div class="hero-eyebrow">Taiwan Ecological Education Studio</div>
+  <h1 class="hero-title">
+    WILDISLE
+    <span class="accent">ARK</span>
+  </h1>
+  <div style="font-family:'Zen Maru Gothic',sans-serif; font-weight:900; font-size:clamp(1.2rem,3vw,1.8rem); color:var(--gold); letter-spacing:0.3em; margin-top:1rem; opacity:0; animation:fadeUp 0.9s 0.55s forwards;">野島方舟</div>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">醫藥・野生動物 &nbsp;|&nbsp; Medicine · Wildlife</p>
+  <p class="hero-desc">
+    野生神奇寶貝觀察家・把野外帶進課堂<br/>
+    提供毒蛇咬傷、野生動物辨識與生態共存的專業講座<br/>
+    <span style="color:#9890b0; font-size:0.8rem; font-family:'Space Mono',monospace;">Field-based ecological safety education across Taiwan</span>
+  </p>
+  <div class="hero-cta">
+    <a class="btn-primary" href="#courses">探索課程</a>
+    <a class="btn-outline" href="#contact">邀課洽談</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">// about</div>
+        <h2 class="section-title">關於野島方舟</h2>
+        <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+        <p>野島方舟是一個以<strong>台灣本土生態為核心</strong>的教育工作室。我們相信，認識自然是保護自然最有力的起點。</p>
+        <p>工作室專注於兩棲爬蟲類與鳥類的野外辨識、生態習性，以及人蛇衝突的預防與急救教育，提供學校、企業、戶外活動等<strong>客製化生態講座</strong>。</p>
+        <p style="color:#9890b0; font-size:0.78rem; font-family:'Space Mono',monospace; line-height:1.8;">
+          Wildisle Ark — Taiwan-based ecological education studio specializing in herpetology, ornithology &amp; wildlife safety.
+        </p>
+        <div class="about-tags">
+          <span class="tag">毒蛇咬傷</span>
+          <span class="tag">兩棲爬蟲</span>
+          <span class="tag">鳥類生態</span>
+          <span class="tag">校園講座</span>
+          <span class="tag">戶外教育</span>
+          <span class="tag">解剖教育</span>
+        </div>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat-box">
+          <div class="stat-num">40+</div>
+          <div class="stat-label">台灣兩棲類種數<br/>Amphibian Species</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">台灣蛇類總數<br/>Native Snake Species</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">600+</div>
+          <div class="stat-label">台灣鳥類種數<br/>Bird Species</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">對生態的熱情<br/>Passion for Nature</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="knowledge">
+  <div class="container">
+    <div class="section-label reveal">// knowledge base</div>
+    <h2 class="section-title reveal">野外知識庫</h2>
+    <div class="section-rule reveal"><div class="line"></div><div class="dot"></div></div>
+    <div class="knowledge-grid">
+      <a class="know-card reveal" href="snakebite.html">
+        <div class="know-num">// 01</div>
+        <div class="know-title">毒蛇咬傷急救指南</div>
+        <div class="know-en">SNAKEBITE EMERGENCY PROTOCOL</div>
+        <p class="know-desc">被毒蛇咬傷後的黃金處置時間與正確步驟，哪些行為反而有害，以及如何在送醫前穩定傷者狀況。</p>
+        <div class="know-arrow">→ 詳細圖文資訊</div>
+      </a>
+      <a class="know-card reveal" href="snake-knowledge.html">
+        <div class="know-num">// 02</div>
+        <div class="know-title">台灣蛇類認識</div>
+        <div class="know-en">TAIWAN SNAKE KNOWLEDGE</div>
+        <p class="know-desc">系統性認識台灣蛇類多樣性，涵蓋毒蛇外觀特徵、分布棲地與毒性介紹，以及野外或住家遇蛇時的正確應對 SOP 與共存策略。</p>
+        <div class="know-arrow">→ 詳細圖文資訊</div>
+      </a>
+      <div class="know-card reveal" style="cursor:default; opacity:0.6; pointer-events:none;">
+        <div class="know-num">// 03</div>
+        <div class="know-title">台灣兩爬入侵種</div>
+        <div class="know-en">INVASIVE HERPETOFAUNA IN TAIWAN</div>
+        <p class="know-desc">哪些外來兩棲爬蟲類已在台灣野外建立族群？牠們從哪裡來、對本土生態造成什麼影響，又該如何辨識與應對。</p>
+        <div class="know-arrow" style="color:var(--gray);">// 即將上線</div>
+      </div>
+    </div>
+    <p style="color:#8880a0; font-size:0.7rem; margin-top:2.5rem; font-family:'Space Mono',monospace; text-align:center; letter-spacing:0.15em;">
+      // 知識庫持續更新中 · Content is being updated
+    </p>
+  </div>
+</section>
+
+<section id="courses">
+  <div class="container">
+    <div class="section-label reveal">// courses</div>
+    <h2 class="section-title reveal">專業課程</h2>
+    <div class="section-rule reveal"><div class="line"></div><div class="dot"></div></div>
+    <div class="courses-grid">
+      <div class="course-card reveal">
+        <div class="course-icon">🐍</div>
+        <div class="course-en">SNAKEBITE & SNAKE KNOWLEDGE</div>
+        <div class="course-title-zh">毒蛇咬傷及蛇類認識</div>
+        <p class="course-desc">從台灣六大毒蛇的外觀特徵、棲地分布到毒性介紹，到咬傷後的正確應對流程、常見錯誤迷思破解與送醫前的黃金處置原則。兼顧野外辨識、住家防蛇與人蛇共存策略。</p>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon">🐸</div>
+        <div class="course-en">HERPETOLOGY BASICS</div>
+        <div class="course-title-zh">兩棲爬蟲生態入門</div>
+        <p class="course-desc">可從台灣原生兩爬物種切入，也可從常見寵物兩爬出發，認識牠們的生態習性與辨識特徵，依對象與需求彈性調整方向。</p>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon">🦅</div>
+        <div class="course-en">BIRD ECOLOGY</div>
+        <div class="course-title-zh">鳥類生態與辨識</div>
+        <p class="course-desc">從猛禽到水鳥，認識台灣豐富鳥類多樣性，學習野外觀鳥技巧與生態紀錄方法。</p>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon">🔬</div>
+        <div class="course-en">DISSECTION WORKSHOP</div>
+        <div class="course-title-zh">兩棲爬蟲解剖課</div>
+        <p class="course-desc">以客製化方式進行兩棲爬蟲動物解剖實作，深入了解內部構造與生理機制。</p>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-icon">🎓</div>
+        <div class="course-en">CUSTOM LECTURE</div>
+        <div class="course-title-zh">客製化生態講座</div>
+        <p class="course-desc">依照主辦單位需求量身規劃內容，可融合多主題。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="section-label reveal">// contact</div>
+      <h2 class="section-title reveal">邀課洽談</h2>
+      <div class="section-rule reveal" style="justify-content:center;"><div class="line"></div><div class="dot"></div></div>
+      <p class="contact-desc reveal">
+        歡迎學校、企業、戶外團體、社區單位洽詢生態講座與課程合作。<br/>
+        請說明活動性質、對象與日期，我們將盡快回覆。<br/><br/>
+        <span style="color:#8880a0; font-size:0.75rem; font-family:'Space Mono',monospace;">
+          We welcome school visits, corporate ESG events &amp; outdoor education programs.
+        </span>
+      </p>
+      <div class="contact-links reveal">
+        <a class="contact-link" href="mailto:wildisleark@gmail.com">
+          ✉ &nbsp;wildisleark@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025–2026 <span>野島方舟 Wildisle Ark</span> &nbsp;·&nbsp; Taiwan Ecological Education Studio &nbsp;·&nbsp; <span>wildisle-ark.github.io</span>
+  <div style="margin-top:0.6rem; font-size:0.62rem; color:#3a3050; letter-spacing:0.05em;">本網站所有文字內容、圖像與設計元素之著作權均屬野島方舟 Wildisle Ark 所有，未經授權不得轉載、重製或作任何商業用途。</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('open');
+    btn.setAttribute('aria-label', btn.classList.contains('open') ? '關閉選單' : '開啟選單');
+  }
+  function closeMenu() {
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+</script>
+</body>
+</html>
