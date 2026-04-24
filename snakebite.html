@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>毒蛇咬傷急救指南 — 野島方舟 Wildisle Ark</title>
+  <meta name="description" content="台灣毒蛇咬傷後的黃金急救步驟、常見錯誤迷思破解、毒性症狀辨識與送醫血清資訊，由野島方舟生態教育工作室整理。"/>
+  <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.7.0/style.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Bebas+Neue&family=Noto+Serif+TC:wght@300;400;600&family=Space+Mono&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:           #06060e;
+      --bg2:          #0a0a18;
+      --bg3:          #0e0e20;
+      --purple:       #b57bee;
+      --purple2:      #d4a8ff;
+      --purple-dim:   #5a2d8a;
+      --purple-glow:  rgba(181,123,238,0.18);
+      --purple-glow2: rgba(181,123,238,0.08);
+      --gold:         #c9a96e;
+      --red:          #ff5f6d;
+      --red-glow:     rgba(255,95,109,0.15);
+      --white:        #f5f2ff;
+      --gray:         #b0a8c8;
+      --border:       rgba(181,123,238,0.2);
+      --border2:      rgba(181,123,238,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: 'LXGW WenKai TC', serif; overflow-x: hidden; }
+
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(6,6,14,0.85); backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid var(--border2);
+    }
+    nav::after {
+      content: ''; position: absolute; bottom: 0; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(181,123,238,0.25), transparent);
+    }
+    .nav-logo {
+      font-family: 'Orbitron', monospace; font-weight: 900; font-size: 1.35rem;
+      color: var(--purple2); text-shadow: 0 0 22px rgba(181,123,238,0.5);
+      letter-spacing: 0.1em; text-decoration: none; transition: text-shadow 0.3s;
+    }
+    .nav-logo:hover { text-shadow: 0 0 36px rgba(181,123,238,0.85); }
+    .nav-logo em { font-style: normal; color: var(--gold); font-size: 0.95rem; letter-spacing: 0.2em; display: block; margin-top: 2px; }
+    .nav-back {
+      font-family: 'Space Mono', monospace; font-size: 0.72rem;
+      color: var(--gray); text-decoration: none;
+      border: 1px solid var(--border); padding: 0.35rem 1.1rem;
+      transition: all 0.25s; position: relative; overflow: hidden;
+    }
+    .nav-back::before { content: ''; position: absolute; inset: 0; background: rgba(181,123,238,0.06); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .nav-back:hover::before { transform: scaleX(1); }
+    .nav-back:hover { color: var(--purple2); border-color: var(--purple); }
+
+    .page-hero {
+      padding: 9rem 2rem 5rem; text-align: center;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,95,109,0.07) 0%, transparent 60%),
+                  linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border2); position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(181,123,238,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(181,123,238,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black, transparent);
+    }
+    .page-hero::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--bg)); pointer-events: none;
+    }
+    .page-label { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+    .page-title { font-family: 'Orbitron', monospace; font-weight: 900; font-size: clamp(1.8rem, 5vw, 3.2rem); color: var(--white); margin-bottom: 0.5rem; text-shadow: 0 0 60px rgba(255,95,109,0.2); opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
+    .page-title-zh { font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--purple2); letter-spacing: 0.15em; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.7s 0.3s forwards; }
+    .page-desc { max-width: 520px; margin: 0 auto; font-size: 0.92rem; color: var(--gray); line-height: 2.1; font-weight: 300; opacity: 0; animation: fadeUp 0.7s 0.4s forwards; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    .anchor-nav {
+      position: sticky; top: 60px; z-index: 90;
+      background: rgba(10,10,24,0.96); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border2);
+      padding: 0.65rem 2rem; display: flex; gap: 0.3rem;
+      flex-wrap: nowrap; overflow-x: auto; justify-content: center;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .anchor-nav::-webkit-scrollbar { display: none; }
+    .anchor-nav a { font-family: 'Space Mono', monospace; font-size: 0.88rem; color: var(--gray); text-decoration: none; padding: 0.3rem 0.9rem; border: 1px solid transparent; transition: all 0.2s; letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+    .anchor-nav a:hover { color: var(--purple2); border-color: rgba(181,123,238,0.3); background: rgba(181,123,238,0.05); }
+
+    .page-body { max-width: 880px; margin: 0 auto; padding: 4.5rem 2rem 7rem; }
+    .content-section { margin-bottom: 4.5rem; }
+
+    .section-label { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.4rem; font-weight: 700; }
+    .section-title { font-family: 'Orbitron', monospace; font-weight: 700; font-size: clamp(1.4rem, 3vw, 2rem); color: var(--white); margin-bottom: 1rem; }
+    .section-rule { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; }
+    .section-rule .line { width: 48px; height: 1px; background: linear-gradient(to right, var(--purple), transparent); }
+    .section-rule .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 8px var(--purple), 0 0 16px rgba(181,123,238,0.4); }
+
+    .prose p { font-size: 1.31rem; color: #ccc6e0; line-height: 2.1; margin-bottom: 1.2rem; font-weight: 300; }
+    .prose p strong { color: var(--white); font-weight: 600; }
+
+    .step-list { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+    .step {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      border: 1px solid var(--border2); padding: 1.3rem 1.5rem;
+      background: linear-gradient(135deg, rgba(181,123,238,0.05) 0%, transparent 100%);
+      position: relative; overflow: hidden; transition: all 0.3s;
+    }
+    .step::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--purple), transparent); }
+    .step:hover { border-color: rgba(181,123,238,0.3); transform: translateX(3px); }
+    .step-num { font-family: 'Orbitron', monospace; font-weight: 900; font-size: 1.3rem; color: var(--purple); min-width: 2rem; line-height: 1; }
+    .step-content { flex: 1; }
+    .step-title { font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
+    .step-desc { font-size: 1.21rem; color: #b0a8c8; line-height: 1.9; font-weight: 300; }
+
+    .warning-box {
+      border: 1px solid rgba(57,200,100,0.35);
+      background: linear-gradient(135deg, rgba(57,200,100,0.07) 0%, rgba(57,200,100,0.03) 100%);
+      padding: 1.4rem 1.6rem; margin: 1.5rem 0; position: relative; overflow: hidden;
+    }
+    .warning-box::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #39c864; box-shadow: 0 0 12px rgba(57,200,100,0.5); }
+    .warning-label { font-family: 'Space Mono', monospace; font-size: 0.88rem; letter-spacing: 0.2em; color: #39c864; text-transform: uppercase; margin-bottom: 0.7rem; }
+    .warning-box p { font-size: 1.25rem; color: #a8d8b0; line-height: 2; font-weight: 300; }
+    .warning-box p strong { color: #d4f0da; }
+
+    .note-box {
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(181,123,238,0.06) 0%, rgba(181,123,238,0.02) 100%);
+      padding: 1.3rem 1.6rem; margin: 1.2rem 0; position: relative; overflow: hidden; transition: border-color 0.3s;
+    }
+    .note-box:hover { border-color: rgba(181,123,238,0.35); }
+    .note-box::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--purple); box-shadow: 0 0 8px rgba(181,123,238,0.4); }
+    .note-label { font-family: 'Space Mono', monospace; font-size: 0.95rem; letter-spacing: 0.15em; color: var(--purple2); margin-bottom: 0.7rem; }
+    .note-box p { font-size: 1.25rem; color: #ccc6e0; line-height: 2; font-weight: 300; }
+
+    .error-box {
+      border: 1px solid rgba(255,95,109,0.35);
+      background: linear-gradient(135deg, rgba(255,95,109,0.07) 0%, rgba(255,95,109,0.03) 100%);
+      padding: 1.4rem 1.6rem; margin: 1.5rem 0; position: relative; overflow: hidden;
+    }
+    .error-box::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #ff5f6d; box-shadow: 0 0 12px rgba(255,95,109,0.5); }
+    .error-box .warning-label { color: #ff5f6d; }
+    .error-box p { font-size: 1.25rem; color: #cc8888; line-height: 2; font-weight: 300; }
+    .error-box p strong { color: #ffaaaa; }
+
+    .snake-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .image-block { margin: 2.5rem 0; }
+    .image-block img { width: 100%; border: 1px solid var(--border2); display: block; }
+    .image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+    .image-item img { width: 100%; border: 1px solid var(--border2); display: block; }
+    .image-caption { font-family: 'Space Mono', monospace; font-size: 0.66rem; color: var(--gray); margin-top: 0.7rem; letter-spacing: 0.05em; opacity: 0.7; }
+    .img-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, var(--bg3), var(--bg2)); border: 1px dashed rgba(181,123,238,0.15); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; }
+    .img-placeholder span { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: rgba(181,123,238,0.25); letter-spacing: 0.1em; }
+
+    .divider { height: 1px; margin: 3.5rem 0; position: relative; background: linear-gradient(to right, transparent, rgba(181,123,238,0.2), transparent); }
+    .divider::before { content: '◆'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.5rem; color: rgba(181,123,238,0.4); background: var(--bg); padding: 0 0.5rem; }
+
+    .back-btn-wrap { text-align: center; margin-top: 5rem; }
+    .back-btn {
+      display: inline-block; font-family: 'Orbitron', monospace; font-weight: 700; font-size: 0.72rem;
+      letter-spacing: 0.15em; color: var(--purple2); text-decoration: none;
+      border: 1px solid rgba(181,123,238,0.4); padding: 0.9rem 2.8rem;
+      clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .back-btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(181,123,238,0.1), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .back-btn:hover::before { transform: scaleX(1); }
+    .back-btn:hover { border-color: var(--purple); box-shadow: 0 0 30px rgba(181,123,238,0.2); }
+
+
+
+    footer { background: var(--bg2); border-top: 1px solid var(--border2); padding: 2rem; text-align: center; font-family: 'Space Mono', monospace; font-size: 0.68rem; color: #5a5070; letter-spacing: 0.05em; }
+    footer span { color: rgba(181,123,238,0.4); }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(181,123,238,0.3); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(181,123,238,0.5); }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.2rem; }
+      .image-grid { grid-template-columns: 1fr; }
+      .anchor-nav { top: 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    WILDISLE ARK
+    <em>野島方舟工作室</em>
+  </a>
+  <a class="nav-back" href="index.html">← 返回首頁</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-label">· knowledge base · 01</div>
+  <h1 class="page-title">SNAKEBITE EMERGENCY PROTOCOL</h1>
+  <p class="page-title-zh">毒蛇咬傷急救指南</p>
+  <p class="page-desc">蛇類咬傷後的黃金處置時間與正確步驟，若不確定蛇種一律當作毒蛇咬傷處置。</p>
+</div>
+
+<div class="anchor-nav">
+  <a href="#first-aid">急救步驟</a>
+  <a href="#wrong">常見錯誤</a>
+  <a href="#symptoms">毒性症狀</a>
+  <a href="#hospital">送醫指引</a>
+  <a href="#antivenom">抗蛇毒血清</a>
+</div>
+
+<div class="page-body">
+
+  <!-- SECTION 1: 急救步驟 -->
+  <div class="content-section" id="first-aid">
+    <div class="section-label">· 01</div>
+    <h2 class="section-title">咬傷後黃金急救步驟</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="image-block">
+      <img src="snakebite-flow.png" alt="蛇類咬傷處置流程圖" style="width:100%; border:1px solid rgba(181,123,238,0.2);"/>
+    </div>
+
+    <div class="warning-box">
+      <div class="warning-label">⚠ 重要提醒</div>
+      <p>被蛇咬傷後，<strong>保持冷靜是第一要務</strong>。恐慌會加速心跳、加快毒素擴散。立即撥打 119 或前往有血清的醫院急診。</p>
+    </div>
+
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">保持冷靜，遠離蛇</div>
+          <div class="step-desc">立刻後退，保持與蛇的距離，避免再次被咬。不要嘗試捕捉或打死牠。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">記下時間與蛇的外觀</div>
+          <div class="step-desc">記錄被咬的確切時間、傷口位置，以及對蛇的外觀印象（顏色、花紋、頭部形狀）。若情況允許可拍照，提供給醫師辨識蛇種，有助判斷毒性與治療方向。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">固定患肢，低於心臟</div>
+          <div class="step-desc">讓被咬的肢體保持靜止，並盡量低於心臟高度，有助於減緩毒素擴散速度。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">移除束縛物</div>
+          <div class="step-desc">脫下咬傷肢體上的戒指、手鍊、手錶或緊身衣物，防止腫脹後造成壓迫。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">立即送醫</div>
+          <div class="step-desc">撥打 119，或自行前往設有血清的醫院急診。途中讓傷者保持冷靜，避免緊張。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 2: 常見錯誤 -->
+  <div class="content-section" id="wrong">
+    <div class="section-label">· 02</div>
+    <h2 class="section-title">千萬不要做的事</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="prose">
+      <p>民間流傳許多「急救方法」，但大多數不但無效，甚至會造成二次傷害。以下是最常見的錯誤行為：</p>
+    </div>
+
+    <div class="image-block">
+      <img src="snakebite-dos-donts.png" alt="蛇吻指令集：五要五不" style="width:100%; border:1px solid rgba(181,123,238,0.2);"/>
+    </div>
+
+    <div class="error-box">
+      <div class="warning-label">✕ 錯誤行為 1</div>
+      <p><strong>用嘴吸出毒液</strong>——口腔黏膜會吸收毒素，反而讓施救者中毒。此方法已被醫學否定。</p>
+    </div>
+    <div class="error-box">
+      <div class="warning-label">✕ 錯誤行為 2</div>
+      <p><strong>用布條或止血帶綁緊患肢</strong>——不當加壓會造成局部壞死，加重組織損傷。</p>
+    </div>
+    <div class="error-box">
+      <div class="warning-label">✕ 錯誤行為 3</div>
+      <p><strong>切開或擠壓傷口</strong>——切開、擠壓傷口無法有效排毒，反而增加感染、出血風險，並可能加速毒素擴散。</p>
+    </div>
+    <div class="error-box">
+      <div class="warning-label">✕ 錯誤行為 4</div>
+      <p><strong>飲酒或服用止痛藥</strong>——酒精會加速血液循環，加快毒素擴散；部分止痛藥也可能與蛇毒產生不良反應。</p>
+    </div>
+    <div class="error-box">
+      <div class="warning-label">✕ 錯誤行為 5</div>
+      <p><strong>冰敷患部</strong>——冰敷會造成血管收縮，導致毒素集中於局部組織，加重壞死風險，切勿冰敷。</p>
+    </div>
+    <div class="error-box">
+      <div class="warning-label">✕ 錯誤行為 6</div>
+      <p><strong>逗弄或試圖捕捉蛇</strong>——即使蛇看似靜止或已死亡，仍可能反射性咬人。遠離蛇是避免二次咬傷最重要的原則。</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 3: 毒性症狀 -->
+  <div class="content-section" id="symptoms">
+    <div class="section-label">· 03</div>
+    <h2 class="section-title">常見毒性症狀</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="prose">
+      <p>台灣毒蛇依毒素類型分為<strong>出血毒</strong>、<strong>神經毒</strong>，以及兼具兩者的<strong>混合性毒</strong>（出血伴神經毒），症狀表現不同，送醫時應告知醫師蛇的外觀特徵。</p>
+    </div>
+
+    <div class="note-box" style="border-color:rgba(232,80,80,0.45); background:rgba(232,80,80,0.08);">
+      <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#e87070; box-shadow:0 0 8px rgba(232,80,80,0.4);"></div>
+      <div class="note-label" style="color:#e87070;">出血毒 · Hemotoxic</div>
+      <p style="color:#ddc8c8;">以破壞凝血系統與血管完整性為主，導致局部劇烈腫脹、瘀血與出血，嚴重時可引發內出血與組織壞死。其特徵是症狀外顯且進展快速，臨床風險在於失血與不可逆的組織損傷。<br>代表蛇種：赤尾青竹絲、龜殼花、百步蛇。</p>
+    </div>
+    <div class="note-box" style="border-color:rgba(232,212,74,0.45); background:rgba(232,212,74,0.07);">
+      <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#e8d44a; box-shadow:0 0 8px rgba(232,212,74,0.4);"></div>
+      <div class="note-label" style="color:#e8d44a;">神經毒 · Neurotoxic</div>
+      <p style="color:#d8d4b8;">主要作用抑制神經傳導，導致肌肉無力、眼瞼下垂與呼吸衰竭。其危險在於早期局部症狀不明顯，但可在短時間內進展為致命的呼吸麻痺。<br>代表蛇種：雨傘節、眼鏡蛇（伴有一點出血症狀）。</p>
+    </div>
+    <div class="note-box" style="border-color:rgba(57,200,100,0.45); background:rgba(57,200,100,0.07);">
+      <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#39c864; box-shadow:0 0 8px rgba(57,200,100,0.4);"></div>
+      <div class="note-label" style="color:#39c864;">混合毒（出血伴神經）· Mixed Toxin</div>
+      <p style="color:#b8d8c0;">兼具「出血」與「神經」的雙重殺傷力。猛烈的凝血異常、溶血與劇痛的出血毒基底上，同時伴隨著神經麻痺與肌肉無力症狀。這種複合型毒液極易迅速引發急性腎衰竭及多重器官衰竭。<br>代表蛇種：鎖鏈蛇。</p>
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">特殊狀況 · 毒液噴眼</div>
+      <p>部分毒蛇（如眼鏡蛇）可能將毒液噴射至眼睛，引發角膜或結膜發炎，症狀包括劇烈疼痛、紅腫與畏光。<br>此情況<strong>不需注射抗蛇毒血清</strong>，應立即以大量生理食鹽水沖洗眼睛，並就醫接受眼藥水症狀治療。</p>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 4: 送醫指引 -->
+  <div class="content-section" id="hospital">
+    <div class="section-label">· 04</div>
+    <h2 class="section-title">送醫指引與血清資訊</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="prose">
+      <p>台灣並非每間醫院都備有抗蛇毒血清，建議事先了解附近有儲備的醫療院所。<a href="https://www.pcc-vghtpe.tw/antidote/" target="_blank" style="color:var(--purple2); text-decoration:none; border-bottom:1px solid rgba(181,123,238,0.4);">衛福部全國解毒劑儲備網</a>提供抗蛇毒血清儲備點查詢系統，可作為送醫參考依據。</p>
+      <p>⚠ 注意：該系統顯示的庫存量<strong>非即時數據</strong>，僅供參考，實際備量請直接致電醫院確認。遇緊急狀況請直接撥打 <strong>119</strong>，由救護人員協助判斷送往適合的醫院。</p>
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">· 抗蛇毒血清儲備點查詢</div>
+      <p>
+        <a href="https://smis.cdc.gov.tw/SMIS/Application/AA/AA99/AA9904_01.aspx" target="_blank" style="color:var(--purple2); text-decoration:none; border-bottom:1px solid rgba(181,123,238,0.4); font-size:1.49rem;">
+          抗蛇毒血清儲備點查詢系統 → smis.cdc.gov.tw ↗
+        </a><br/>
+        <span style="font-size:1.25rem; color:#a89ec0; margin-top:0.4rem; display:block;">疾管署系統 · 非即時庫存 · 僅供送醫參考</span>
+        <span style="font-size:1.25rem; color:#a89ec0; margin-top:0.3rem; display:block;">💊 人用抗蛇毒血清費用由<strong style="color:var(--white);">健保全額支付</strong></span>
+      </p>
+    </div>
+
+    <div class="note-box" style="border-color:rgba(56,189,200,0.4); background:rgba(56,189,200,0.07);">
+      <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#38bdc8; box-shadow:0 0 8px rgba(56,189,200,0.4);"></div>
+      <div class="note-label" style="color:#38bdc8;">· 動物用抗毒蛇血清</div>
+      <p style="color:#b0d8dc;">
+        <a href="https://www.tw-tvma.org/serum.php" target="_blank" style="color:#38bdc8; text-decoration:none; border-bottom:1px solid rgba(56,189,200,0.4); font-size:1.49rem;">
+          動物用抗毒蛇血清申請與查詢 → tw-tvma.org ↗
+        </a><br/>
+        <span style="font-size:1.25rem; color:#7ab8c0; margin-top:0.4rem; display:block;">台灣獸醫師公會 · 寵物或動物遭蛇咬傷時之血清申請路徑</span>
+        <span style="font-size:1.25rem; color:#7ab8c0; margin-top:0.3rem; display:block;">💰 動物用血清一劑約 <strong style="color:#d0f0f4;">28,000 元，需自費</strong></span>
+      </p>
+    </div>
+
+    <div class="note-box">
+      <div class="note-label">· 緊急聯絡</div>
+      <p style="font-size:1.49rem;">緊急救護：<strong>119</strong><br/>毒物諮詢專線：<strong>02-2871-7121</strong>（林口長庚醫院毒物科，24 小時）</p>
+    </div>
+
+    <div class="image-block">
+      <img src="毒蛇咬傷處置流程.jpg" alt="臺北榮總毒蛇咬傷處置流程圖" style="width:100%; border:1px solid rgba(181,123,238,0.2); display:block;"/>
+      <div class="image-caption" style="font-size:1.25rem; opacity:1;">▶ 臺北榮總毒蛇咬傷處置流程圖</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SECTION 5: 抗蛇毒血清 -->
+  <div class="content-section" id="antivenom">
+    <div class="section-label">· 05</div>
+    <h2 class="section-title">台灣抗蛇毒血清</h2>
+    <div class="section-rule"><div class="line"></div><div class="dot"></div></div>
+
+    <div class="prose">
+      <p>台灣目前有四種抗蛇毒血清，針對6大毒蛇，由疾管署負責生產與供應，包括雙價與單價型，均為<strong>凍晶注射劑</strong>，需由醫師依蛇種與症狀判斷使用。血清需<strong>冷藏保存</strong>，非一般常溫藥品。</p>
+    </div>
+
+    <div class="image-block" style="margin:2rem 0;">
+      <img src="四大血清.png" alt="台灣四種抗蛇毒血清" style="width:100%; border:1px solid rgba(181,123,238,0.2); display:block;"/>
+    </div>
+
+    <div class="snake-grid" style="margin-top:2rem;">
+      <div class="note-box" style="margin:0; background:rgba(220,100,20,0.15); border-color:rgba(220,100,20,0.4);">
+        <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#e8884a; box-shadow:0 0 8px rgba(220,100,20,0.4);"></div>
+        <div class="note-label" style="color:#e8884a; font-size:1.13rem; letter-spacing:0.15em;">血清 01 · 橘色包裝</div>
+        <p><strong style="font-family:'Klee One',serif; font-weight:700; font-size:1.49rem;">抗雨傘節及飯匙倩蛇毒血清</strong><br/>
+        <span style="font-family:'EB Garamond',serif; font-style:italic; font-size:1.19rem;">Antivenin of B. multicinctus and N. naja atra</span><br/>
+        <span style="font-size:1.15rem; color:#d4a882;">對應蛇種：雨傘節、眼鏡蛇（飯匙倩）</span><br/>
+        <span style="font-size:1.1rem; color:#e8884a; border:1px solid rgba(220,100,20,0.5); padding:0.15rem 0.7rem; display:inline-block; margin-top:0.5rem;">神經毒</span></p>
+      </div>
+      <div class="note-box" style="margin:0; background:rgba(200,40,40,0.15); border-color:rgba(200,40,40,0.4);">
+        <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#e87070; box-shadow:0 0 8px rgba(200,40,40,0.4);"></div>
+        <div class="note-label" style="color:#e87070; font-size:1.13rem; letter-spacing:0.15em;">血清 02 · 紅色包裝</div>
+        <p><strong style="font-family:'Klee One',serif; font-weight:700; font-size:1.49rem;">抗龜殼花及赤尾鮐蛇毒血清</strong><br/>
+        <span style="font-family:'EB Garamond',serif; font-style:italic; font-size:1.19rem;">Antivenin of Tr. mucrosquamatus and Tr. gramineus</span><br/>
+        <span style="font-size:1.15rem; color:#d4a0a0;">對應蛇種：龜殼花、赤尾青竹絲</span><br/>
+        <span style="font-size:1.1rem; color:#e87070; border:1px solid rgba(200,40,40,0.5); padding:0.15rem 0.7rem; display:inline-block; margin-top:0.5rem;">出血毒</span></p>
+      </div>
+      <div class="note-box" style="margin:0; background:rgba(40,160,60,0.15); border-color:rgba(40,160,60,0.4);">
+        <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#60c878; box-shadow:0 0 8px rgba(40,160,60,0.4);"></div>
+        <div class="note-label" style="color:#60c878; font-size:1.13rem; letter-spacing:0.15em;">血清 03 · 綠色包裝</div>
+        <p><strong style="font-family:'Klee One',serif; font-weight:700; font-size:1.49rem;">抗百步蛇毒血清</strong><br/>
+        <span style="font-family:'EB Garamond',serif; font-style:italic; font-size:1.19rem;">Antivenin of D. acutus</span><br/>
+        <span style="font-size:1.15rem; color:#90c89a;">對應蛇種：百步蛇</span><br/>
+        <span style="font-size:1.1rem; color:#60c878; border:1px solid rgba(40,160,60,0.5); padding:0.15rem 0.7rem; display:inline-block; margin-top:0.5rem;">出血毒</span></p>
+      </div>
+      <div class="note-box" style="margin:0; background:rgba(180,60,180,0.15); border-color:rgba(180,60,180,0.4);">
+        <div style="position:absolute; left:0; top:0; bottom:0; width:3px; background:#d080d0; box-shadow:0 0 8px rgba(180,60,180,0.4);"></div>
+        <div class="note-label" style="color:#d080d0; font-size:1.13rem; letter-spacing:0.15em;">血清 04 · 紫色包裝</div>
+        <p><strong style="font-family:'Klee One',serif; font-weight:700; font-size:1.49rem;">抗鎖鏈蛇毒血清</strong><br/>
+        <span style="font-family:'EB Garamond',serif; font-style:italic; font-size:1.19rem;">Antivenin of D. russellii</span><br/>
+        <span style="font-size:1.15rem; color:#c0a0c0;">對應蛇種：鎖鏈蛇</span><br/>
+        <span style="font-size:1.1rem; color:#d080d0; border:1px solid rgba(180,60,180,0.5); padding:0.15rem 0.7rem; display:inline-block; margin-top:0.5rem;">混合毒（出血伴神經）</span></p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label" style="margin-top:0;">· 血清製作流程</div>
+    <h3 style="font-family:'Orbitron',monospace; font-size:1.25rem; color:var(--white); margin-bottom:1rem; font-weight:700;">ANTIVENOM PRODUCTION PROCESS</h3>
+
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">採集蛇毒</div>
+          <div class="step-desc">由專業人員對毒蛇進行擠毒，收集原毒液，經低溫冷凍乾燥處理後製成毒素原料，確保毒性穩定且可定量。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">注射馬匹免疫</div>
+          <div class="step-desc">將經過稀釋與減毒處理的蛇毒，以漸進方式反覆注射至馬匹體內，刺激免疫系統產生大量抗體（免疫球蛋白）。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">採集馬血清</div>
+          <div class="step-desc">待馬匹產生足夠抗體後，採集其血液，分離出含有高濃度抗毒素抗體的血清部分。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">試血</div>
+          <div class="step-desc">將馬血清與蛇毒混合後注射給小白鼠，觀察小白鼠存活狀況，測試血清中和抗體是否已達足夠效價。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">純化與精製</div>
+          <div class="step-desc">對馬血清進行多道純化程序，去除多餘蛋白質，提取有效的抗體片段（F(ab')₂），降低過敏反應風險並提高中和效價。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <div class="step-content">
+          <div class="step-title">凍晶化與品質檢驗</div>
+          <div class="step-desc">將精製血清進行冷凍乾燥（凍晶化），延長保存期限，最後經效價測試、安全性與無菌檢驗合格後，才封裝上市供醫療使用。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <div class="warning-label">⚠ 重要說明</div>
+      <p>抗蛇毒血清為<strong>處方藥品</strong>，需由醫師評估後施打。部分患者可能對馬血清蛋白產生過敏反應，施打前醫師會進行評估與準備。<strong>切勿自行購買或施打。</strong></p>
+    </div>
+  </div>
+
+  <div class="back-btn-wrap" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+    <a class="back-btn" href="index.html">← 返回首頁</a>
+    <a class="back-btn" href="snake-knowledge.html" style="background:linear-gradient(135deg,rgba(181,123,238,0.15),rgba(181,123,238,0.05)); border-color:rgba(181,123,238,0.6);">台灣蛇類認識 →</a>
+  </div>
+
+</div>
+
+<footer>
+  © 2025–2026 <span>野島方舟 Wildisle Ark</span> &nbsp;·&nbsp; Taiwan Ecological Education Studio &nbsp;·&nbsp; <span>wildisle-ark.github.io</span>
+  <div style="margin-top:0.6rem; font-size:0.78rem; color:#3a3050; letter-spacing:0.05em;">本網站所有文字內容、圖像與設計元素之著作權均屬野島方舟 Wildisle Ark 所有，未經授權不得轉載、重製或作任何商業用途。</div>
+</footer>
+
+</body>
+</html>
